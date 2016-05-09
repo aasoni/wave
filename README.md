@@ -2,7 +2,7 @@
 2D wave simulation project.
 
 This repository was created for the final project of the NYU "Numerical Methods II" class of the Spring 2016 semester.
-It runs a finite differencing 2D wave simulator on input xyz.
+It runs a finite differencing 2D wave simulator on input xyz data.
 
 # Build
 $ make
