@@ -65,7 +65,7 @@ ParamReader::ParameterType ParamReader::paramNameToType(const string &paramName)
     else if(paramName == "//")
         return COMMENT;
     else
-        return INVALID_TYPE;
+        return UNKNOWN_TYPE;
 
 }
 
@@ -132,8 +132,7 @@ void ParamReader::readParameter(const string &line)
             //nothing to do
             break;
         default:
-            //invalid type
-            cerr << "Got invalid type: " << paramName << endl;
+            //unknow type skip
             break;
     }
 }

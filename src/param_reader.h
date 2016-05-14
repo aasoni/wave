@@ -71,7 +71,7 @@ class ParamReader {
             DELTA_Y,
             DELTA_T,
             COMMENT,
-            INVALID_TYPE
+            UNKNOWN_TYPE
         };
 
         void readParameter(const string &line);
