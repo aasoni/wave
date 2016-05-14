@@ -69,7 +69,7 @@ int main(int argc, char *argv[] )
     XYZ_Reader reader;
     if(!reader.readFile(&latitude, &longitude, &bathymetry, xLength, yLength, fileName))
     {
-        cout << "Unable to read data" << endl;
+        cout << "Unable to read data: " << fileName << endl;
         return 1;
     }
 
