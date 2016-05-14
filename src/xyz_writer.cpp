@@ -43,7 +43,7 @@ bool XYZ_Writer::writeToFile(const VEC &x,
         fhandle << yVal << " ";
 
         //write z value
-        zVal = isnan(z[yIdx][xIdx]) ? 1.0 : z[yIdx][xIdx];
+        zVal = isnan(z[yIdx][xIdx]) ? 0.0 : z[yIdx][xIdx];
 
 
         fhandle << zVal << endl;
