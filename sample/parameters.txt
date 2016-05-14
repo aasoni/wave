@@ -1,5 +1,5 @@
 // DATA FILE INFO
-DATA_FILE_NAME: data/tyrrhenian.xyz
+DATA_FILE_NAME: sample/tyrrhenian.xyz
 MOVIE_FILE_NAME: tyrrhenian_wave.mp4
 X_LENGTH: 767
 Y_LENGTH: 381
