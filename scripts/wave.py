@@ -1,3 +1,9 @@
+#
+#     wave.py
+#
+#     author: ale.luca.asoni@gmail.com
+#
+
 import numpy as np
 import matplotlib.colors
 import matplotlib.pyplot as plt
@@ -15,15 +21,25 @@ import sys
 X = np.zeros(0)
 Y = np.zeros(0)
 Z = np.zeros(0)
+n = m = 0
 
 #plot window
 xlow = xhig = ylow = yhig = 0
-n = m = 0
+
+#param to determine every
+#how many frames to capture video
+plotInterval= 1
+steps = 0
+
+#movie params
+movieFileName = ""
 
 #read parameter file
 def readParamFile(fileName):
     deltaX = deltaY = 0
     global xlow, xhig, ylow, yhig, n, m
+    global plotInterval, steps
+    global movieFileName
 
     f = open(fileName,'r')
     lines = f.readlines()
@@ -32,7 +48,11 @@ def readParamFile(fileName):
             continue #ignore comments and empty lines
 
         (param,value) = line.rstrip().split(':')
-        if param.rstrip() == "X_LOW":
+        if param.rstrip() == "MOVIE_FILE_NAME":
+            movieFileName = value
+        elif param.rstrip() == "STEPS":
+            steps = int(value)
+        elif param.rstrip() == "X_LOW":
             xlow = float(value)
         elif param.rstrip() == "X_HIGH":
             xhig = float(value)
@@ -44,11 +64,13 @@ def readParamFile(fileName):
             deltaX = float(value)
         elif param.rstrip() == "DELTA_Y":
             deltaY = float(value)
+        elif param.rstrip() == "PLOT_INTERVAL":
+            plotInterval = int(value)
         else:
             continue
 
-    n = round((yhig - ylow) / deltaY) 
-    m = round((xhig - xlow) / deltaX) + 1
+    n = round((yhig - ylow) / deltaY)
+    m = round((xhig - xlow) / deltaX)
 
 #load frame 
 def loadFrame(fileName):
@@ -85,19 +107,20 @@ def loadFrame(fileName):
                         y_idx = y_idx + 1
                             
                     X[:,x_idx] = x
-                    Z[n-y_idx-1,x_idx] = z
+                    Z[n-y_idx,x_idx] = z
                     x_idx = x_idx + 1
 
 def waterLandCmap():
     cdict = {'red': ((0.0, 0.0, 0.0),
-                     (0.0, 0.0, 0.0),
+                     (0.5, 0.0, 0.0),
                      (1.0, 0.0, 0.0)),
              'green': ((0.0, 0.0, 0.0),
-                       (0.5, 0.0, 0.0),
-                       (1.0, 1.0, 1.0)),
-             'blue': ((0.0, 0.0, 1.0),
-                      (0.5, 0.1, 0.0),
-                      (1.0, 0.5, 0.0))}
+                       (0.5, 0.5, 0.5),
+                       (1.0, 0.1, 0.0)),
+             'blue': ((0.0, 0.5, 0.5),
+                      (0.2, 0.9, 0.5),
+                      (0.5, 0.6, 0.0),
+                      (1.0, 0.0, 0.0))}
     my_cmap = matplotlib.colors.LinearSegmentedColormap('my_colormap',cdict,256)
     return my_cmap
 
@@ -110,48 +133,38 @@ def generateMovie(inputFile):
     FFMpegWriter = ani.writers['ffmpeg']
     metadata     = dict( title  = '2D Wave', artist='Matplotlib',
                          comment= '2D Wave Equation')
-    writer       = FFMpegWriter(fps=15, metadata=metadata)
+    writer       = FFMpegWriter(fps=15, metadata=metadata, bitrate=6000)
    
-    Nframes = 1
-    dpi = 100
+    Nframes = steps
+    dpi = 120
     fig = plt.figure()
     
-    #with writer.saving(fig, "../data/waveAnimation.mp4", dpi):
+    with writer.saving(fig, movieFileName, dpi):
     
-    for i in range(1,Nframes+1, 1):
-        name = inputFile + '_' + str(i) + '.xyz'
-        while not os.path.isfile(name):
-            time.sleep(10)
+        for i in range(1,Nframes+1, plotInterval):
+            name = inputFile + '_' + str(i) + '.xyz'
+            while not os.path.isfile(name):
+                time.sleep(10)
    
-        loadFrame(name)
-        print Z.shape
-    
-        plt.clf()
+            loadFrame(name)
         
-        ax = fig.gca(projection = '3d')
-        ax.view_init(elev=50, azim=-50)
-        ax.set_xlim3d(xlow,xhig)
-        ax.set_ylim3d(ylow,yhig)
-        ax.set_zlim3d(-100,2000)
-        ax.dist=14
-        Z = scipy.ndimage.gaussian_filter(Z,2)
-        surf = ax.plot_surface(X, Y, Z,
-                              rstride = 3,
-                              cstride = 3,
-                              cmap = waterLandCmap(),
-                              linewidth = 0.5,
-                              antialiased = True)
-         
-        #writer.grab_frame()
-        plt.show()
-    
-        print("done with " + str(i) + " frames")
-    
-        #delete files processed so far to save disk space
-        #for j in range(1,i+1):
-        #    fname = '../data/wave_'+str(j)+'.xyz'
-        #    if os.path.isfile(fname):
-        #        os.remove(fname)
+            plt.clf()
+            
+            ax = fig.gca(projection = '3d')
+            ax.view_init(elev=50, azim=-80)
+            ax.set_xlim3d(xlow,xhig)
+            ax.set_ylim3d(ylow,yhig)
+            ax.set_zlim3d(-100,2000)
+            ax.dist=10
+            Z = scipy.ndimage.gaussian_filter(Z,2)
+            surf = ax.plot_surface(X, Y, Z,
+                                  rstride = 3,
+                                  cstride = 3,
+                                  cmap = waterLandCmap(),
+                                  linewidth = 0,
+                                  antialiased = False)
+            writer.grab_frame()
+            print("done with " + str(i) + " frames")
 
 def main(argv=sys.argv):
     usage = ' '.join(["Usage:",str(argv[0]), "<parameter_file> <input_prefix>"])
