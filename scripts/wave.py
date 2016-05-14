@@ -49,7 +49,7 @@ def readParamFile(fileName):
 
         (param,value) = line.rstrip().split(':')
         if param.rstrip() == "MOVIE_FILE_NAME":
-            movieFileName = value
+            movieFileName = value.rstrip()
         elif param.rstrip() == "STEPS":
             steps = int(value)
         elif param.rstrip() == "X_LOW":
