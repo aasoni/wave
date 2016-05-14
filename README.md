@@ -16,16 +16,16 @@ Quick start
 
 2. Run simulation
 
-        wave_simulate.tsk -p sample/parameters.xyz -o sample/out
+        wave_simulate.tsk -p sample/parameters.txt -o sample/out
 
 3. Generate movie
 
         cd scripts
-        python wave.py ../sample/parameters ../sample/out
+        python wave.py ../sample/parameters.txt ../sample/out
 
 
 *parameters.txt* is a parameter file that contains values for all the parameters needed for the simulation
-and *sample.out* will be used to name files generated at each step of the simulation:
+and *sample/out* will be used to name files generated at each step of the simulation:
 
         sample/out_1.xyz
         sample/out_2.xyz
