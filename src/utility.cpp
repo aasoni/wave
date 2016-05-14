@@ -21,15 +21,15 @@ void bathymetryToHeight(MAT *b)
     {
         for(size_t j = 0; j != n; ++j)
         {
-            if( (*b)[i][j] < 0 + EPS )
+            if( (*b)[i][j] < EPS + 0 )
+                //set all sea (mathymetry < 0) to 0
                 (*b)[i][j] = 0.0;
             else
+                //set all land (bathymetry > 0) to NaNQ
                 (*b)[i][j] = numeric_limits<double>::quiet_NaN();
-
         }
     }
 }
-
 
 void heightAndBathymetryToSurface(MAT *out, const MAT &b, const MAT &h)
 {
@@ -50,10 +50,9 @@ void heightAndBathymetryToSurface(MAT *out, const MAT &b, const MAT &h)
         for(size_t j = 0; j != n; ++j)
         {
             if(isnan(h[i][j]))
-                (*out)[i][j] = 1000+b[i][j];
+                (*out)[i][j] = b[i][j];
             else
-                (*out)[i][j] =/* b[i][j] +*/ h[i][j];
-
+                (*out)[i][j] = h[i][j];
         }
     }
 }
