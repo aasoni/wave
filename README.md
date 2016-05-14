@@ -27,6 +27,6 @@ Quick start
 *parameters* is a parameter file that contains values for all the parameters needed for the simulation
 and *outprefix* will be used to name files generated at each step of the simulation:
 
-        *outprefix*_1.xyz
-        *outprefix*_2.xyz
+        outprefix_1.xyz
+        outprefix_2.xyz
         ...
