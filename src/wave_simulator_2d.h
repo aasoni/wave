@@ -31,7 +31,6 @@ class WaveSimulator2D
             , m_lambdaY(deltaT/deltaY)
             , m_ySize(init.size())
             , m_xSize(init.empty() ? 0 : init[0].size())
-            , m_boundaryCond(SOMMERFELD)
             , m_wave(wave)
         {
             m_qX = (m_deltaX - m_deltaT)/(m_deltaX + m_deltaT);
@@ -59,9 +58,6 @@ class WaveSimulator2D
         double m_qX;
         double m_qY;
 
-        //boundary condition
-        BOUNDARY_CONDITION m_boundaryCond;
-
         //wave that will be marched forward
         MAT *m_wave;
         MAT *m_prevWave;
@@ -77,15 +73,13 @@ class WaveSimulator2D
         enum BOUNDARY_TYPE {
             LEFT, RIGHT, UPPER, LOWER
         };
-        double boundaryStepRef(size_t i, size_t j, BOUNDARY_TYPE type);
-        double boundaryStepSom(size_t i, size_t j, BOUNDARY_TYPE type);
+        double boundaryStep(size_t i, size_t j, BOUNDARY_TYPE type);
 
         //corner steps
         enum CORNER_TYPE {
             BOTTOM_LEFT, BOTTOM_RIGHT, TOP_LEFT, TOP_RIGHT 
         };
-        double cornerStepRef(size_t i, size_t j, CORNER_TYPE type);
-        double cornerStepSom(size_t i, size_t j, CORNER_TYPE type);
+        double cornerStep(size_t i, size_t j, CORNER_TYPE type);
 
         //determine boundary type
         void boundaryType(bool *corner, BOUNDARY_TYPE *bType, 
