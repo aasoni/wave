@@ -16,7 +16,7 @@ Quick start
 
 2. Run simulation
 
-        wave_simulate.tsk -p sample/parameters.txt -o sample/out
+        ./wave_simulate.tsk -p sample/parameters.txt -o sample/out
 
 3. Generate movie
 
@@ -30,3 +30,11 @@ and *sample/out* will be used to name files generated at each step of the simula
         sample/out_1.xyz
         sample/out_2.xyz
         ...
+
+If you want to run both the simulation and the movie builder at the same time you 
+can use the run.sh script:
+
+        cd scripts
+        ./run.sh sample/parameters.txt
+
+This will run the simulator in the background, and the python script the builds the movie in the foreground.
