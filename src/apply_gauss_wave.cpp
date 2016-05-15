@@ -1,16 +1,16 @@
-#include <apply_init_wave.h>
+#include <apply_gauss_wave.h>
 
 #include <math.h>
 
 namespace aasoni {
 
-double ApplyInitWave::gaussianBell(double x, double y)
+double ApplyGaussWave::gaussianBell(double x, double y)
 {
     return m_amplitude * exp(-0.5*pow((x - pow(m_xPos,m_c))/m_xSigma, 2.0)
                              -0.5*pow((y - pow(m_yPos,m_c))/m_ySigma, 2.0));
 }
 
-void ApplyInitWave::operator()(VEC *x, VEC *y, MAT *surface)
+void ApplyGaussWave::operator()(VEC *x, VEC *y, MAT *surface)
 {
     if(!x || !y || !surface) return;
 
@@ -30,7 +30,6 @@ void ApplyInitWave::operator()(VEC *x, VEC *y, MAT *surface)
             (*surface)[i][j] = v + gaussianBell((*x)[j], (*y)[i]);
         }
     }
-
 }
 
 } //aasoni

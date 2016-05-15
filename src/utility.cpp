@@ -22,7 +22,7 @@ void bathymetryToHeight(MAT *b)
         for(size_t j = 0; j != n; ++j)
         {
             if( (*b)[i][j] < EPS + 0 )
-                //set all sea (mathymetry < 0) to 0
+                //set all sea (bathymetry < 0) to 0
                 (*b)[i][j] = 0.0;
             else
                 //set all land (bathymetry > 0) to NaNQ

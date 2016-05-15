@@ -16,15 +16,17 @@ namespace aasoni {
 //      .
 //      .
 //x_n   y_1     z_n_1
-bool XYZ_Reader::readFile(VEC *x, VEC *y, vector<VEC> *z, size_t n,
-                          size_t m, const string &fileName)
+bool XYZ_Reader::readFile(VEC *x, VEC *y, vector<VEC> *z)
 {
     if(!x || !y || !z)
         return false;
 
-    ifstream fhandle(fileName);
+    ifstream fhandle(m_fileName);
     if(!fhandle.good())
         return false;
+
+    size_t &m = m_yLength;
+    size_t &n = m_xLength;
 
     //allocate size for data vectors
     x->resize(n);

@@ -1,11 +1,11 @@
-#include <wave_simulator_2d.h>
+#include <lf_wave_simulator_2d.h>
 
 #include <math.h>
 
 namespace aasoni {
 
 //determine boundary type
-void WaveSimulator2D::boundaryType(bool *corner, BOUNDARY_TYPE *bType, 
+void LFWaveSimulator2D::boundaryType(bool *corner, BOUNDARY_TYPE *bType, 
                                    CORNER_TYPE *cType, size_t i, size_t j)
 {
     if(!corner || !bType || !cType)
@@ -58,7 +58,7 @@ void WaveSimulator2D::boundaryType(bool *corner, BOUNDARY_TYPE *bType,
 }
 
 //reflective boundary
-double WaveSimulator2D::boundaryStep(size_t i, size_t j, BOUNDARY_TYPE type)
+double LFWaveSimulator2D::boundaryStep(size_t i, size_t j, BOUNDARY_TYPE type)
 {
     //indexes
     size_t ipo = i+1, imo = i-1, jpo = j+1, jmo = j-1;
@@ -92,7 +92,7 @@ double WaveSimulator2D::boundaryStep(size_t i, size_t j, BOUNDARY_TYPE type)
 }
 
 //reflective boundary corner
-double WaveSimulator2D::cornerStep(size_t i, size_t j, CORNER_TYPE type)
+double LFWaveSimulator2D::cornerStep(size_t i, size_t j, CORNER_TYPE type)
 {
     //indexes
     size_t ipo = i+1, imo = i-1, jpo = j+1, jmo = j-1;
@@ -131,7 +131,7 @@ double WaveSimulator2D::cornerStep(size_t i, size_t j, CORNER_TYPE type)
 }
 
 //boundary step
-double WaveSimulator2D::boundaryStep(size_t i, size_t j)
+double LFWaveSimulator2D::boundaryStep(size_t i, size_t j)
 {
     if(i > 0 && i < m_ySize - 1 &&
        j > 0 && j < m_xSize - 1 )
@@ -152,7 +152,7 @@ double WaveSimulator2D::boundaryStep(size_t i, size_t j)
 }
 
 //internal step
-double WaveSimulator2D::internalStep(size_t i, size_t j)
+double LFWaveSimulator2D::internalStep(size_t i, size_t j)
 {
     //handle boundary with land
     size_t ipo = i+1, imo = i-1, jpo = j+1, jmo = j-1;
@@ -176,7 +176,7 @@ double WaveSimulator2D::internalStep(size_t i, size_t j)
     return ret;
 }
 
-bool WaveSimulator2D::next()
+bool LFWaveSimulator2D::next()
 {
     if(!m_prevWave || !m_wave || m_steps == 0)
         return false;

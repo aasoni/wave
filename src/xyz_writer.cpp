@@ -19,10 +19,9 @@ namespace aasoni {
 //x_n   y_1     z_n_1
 bool XYZ_Writer::writeToFile(const VEC &x,
                              const VEC &y, 
-                             const vector<VEC> &z,
-                             const string &fileName)
+                             const vector<VEC> &z)
 {
-    ofstream fhandle(fileName, ios::out);
+    ofstream fhandle(m_fileName, ios::out);
 
     //get size from vectors
     size_t n = x.size();
