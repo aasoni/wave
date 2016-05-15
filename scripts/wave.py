@@ -139,8 +139,10 @@ def generateMovie(inputFile):
     dpi = 120
     fig = plt.figure()
     
-    with writer.saving(fig, movieFileName, dpi):
-    
+    with writer.saving(fig, "../" + movieFileName, dpi):
+
+        totalFrames = int(Nframes/plotInterval)
+
         for i in range(1,Nframes+1, plotInterval):
             name = inputFile + '_' + str(i) + '.xyz'
             while not os.path.isfile(name):
@@ -164,7 +166,7 @@ def generateMovie(inputFile):
                                   linewidth = 0,
                                   antialiased = False)
             writer.grab_frame()
-            print("done with " + str(i) + " frames")
+            print("done with " + str(i) + "/" + str(totalFrames) + " frames")
 
 def main(argv=sys.argv):
     usage = ' '.join(["Usage:",str(argv[0]), "<parameter_file> <input_prefix>"])
