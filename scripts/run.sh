@@ -12,3 +12,7 @@ sleep 5
 #run movie builder
 cd scripts
 python wave.py ../$paramFileName ../sample/out
+
+#remove intermediate files
+cd ..
+rm sample/out_[0-9]*.xyz
