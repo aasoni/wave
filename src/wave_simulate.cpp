@@ -87,5 +87,11 @@ int main(int argc, char *argv[] )
     WaveSimulator2D *simulator = new LFWaveSimulator2D(steps, deltaX, deltaY, deltaT);
 
     //run simulation
-    run(reader, writer, initWave, simulator, surfaceFileName, outFilePrefix);
+    int rc = run(reader, writer, initWave, simulator, surfaceFileName, outFilePrefix);
+    if(0 != rc)
+    {
+        cerr << "There was an error in the simulation. rc: " << rc << endl;
+    }
+
+    return rc;
 }
