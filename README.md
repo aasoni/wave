@@ -31,6 +31,9 @@ and *sample/out* will be used to name files generated at each step of the simula
         sample/out_2.xyz
         ...
 
+Quicker start
+-----------
+
 If you want to run both the simulation and the movie builder at the same time you 
 can use the run.sh script:
 
