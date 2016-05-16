@@ -40,4 +40,4 @@ can use the run.sh script:
         cd scripts
         ./run.sh sample/parameters.txt
 
-This will run the simulator in the background, and the python script the builds the movie in the foreground.
+This will run the simulator in the background, and the python script that builds the movie in the foreground.
