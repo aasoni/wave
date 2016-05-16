@@ -47,9 +47,9 @@ def readParamFile(fileName):
         if line[0:2] == '//' or line.rstrip() == '':
             continue #ignore comments and empty lines
 
-        (param,value) = line.rstrip().split(':')
+        (param,value) = line.strip().split(':')
         if param.rstrip() == "MOVIE_FILE_NAME":
-            movieFileName = value.rstrip()
+            movieFileName = value.strip()
         elif param.rstrip() == "STEPS":
             steps = int(value)
         elif param.rstrip() == "X_LOW":
