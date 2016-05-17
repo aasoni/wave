@@ -98,7 +98,6 @@ def loadFrame(fileName):
                 if x < xlow or x > xhig:
                     continue
                 else:
-
                     if y != prev_y:
                         x_idx = 0
                         Y[n-y_idx-1,:] = y
@@ -110,16 +109,17 @@ def loadFrame(fileName):
                     Z[n-y_idx,x_idx] = z
                     x_idx = x_idx + 1
 
+
 def waterLandCmap():
     cdict = {'red': ((0.0, 0.0, 0.0),
                      (0.5, 0.0, 0.0),
                      (1.0, 0.0, 0.0)),
              'green': ((0.0, 0.0, 0.0),
-                       (0.5, 0.5, 0.5),
+                       (0.3, 0.6, 0.6),
                        (1.0, 0.1, 0.0)),
-             'blue': ((0.0, 0.5, 0.5),
-                      (0.2, 0.9, 0.5),
-                      (0.5, 0.6, 0.0),
+             'blue': ((0.0, 0.1, 0.1),
+                      (0.2, 1.0, 0.5),
+                      (0.45, 0.6, 0.2),
                       (1.0, 0.0, 0.0))}
     my_cmap = matplotlib.colors.LinearSegmentedColormap('my_colormap',cdict,256)
     return my_cmap
@@ -163,6 +163,9 @@ def generateMovie(inputFile):
                                   rstride = 3,
                                   cstride = 3,
                                   cmap = waterLandCmap(),
+                                  vmin = -170,
+                                  vmax = 2000,
+                                  shade = True,
                                   linewidth = 0,
                                   antialiased = False)
             writer.grab_frame()
