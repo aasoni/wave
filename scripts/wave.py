@@ -92,12 +92,12 @@ def loadFrame(fileName):
             x = float(x)
             y = float(y)
             z = float(z)
-            if y > yhig:
+            if y - EPS > yhig:
                 continue
             elif y - EPS < ylow:
                 return
             else:
-                if x - EPS < xlow or x > xhig:
+                if x - EPS < xlow or x - EPS > xhig:
                     continue
                 else:
                     if y != prev_y:
