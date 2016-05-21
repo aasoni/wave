@@ -25,6 +25,8 @@ n = m = 0
 
 #plot window
 xlow = xhig = ylow = yhig = 0
+#epsilon value for comparisons
+EPS = 1e-10
 
 #param to determine every
 #how many frames to capture video
@@ -92,10 +94,10 @@ def loadFrame(fileName):
             z = float(z)
             if y > yhig:
                 continue
-            elif y < ylow:
+            elif y - EPS < ylow:
                 return
             else:
-                if x < xlow or x > xhig:
+                if x - EPS < xlow or x > xhig:
                     continue
                 else:
                     if y != prev_y:
@@ -104,7 +106,7 @@ def loadFrame(fileName):
                         X[:,x_idx] = x
                         prev_y = y
                         y_idx = y_idx + 1
-                            
+                    
                     X[:,x_idx] = x
                     Z[n-y_idx,x_idx] = z
                     x_idx = x_idx + 1
