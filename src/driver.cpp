@@ -36,7 +36,7 @@ int run(SurfaceReader   *reader,
 
     //Add wave to surface
     MAT wave = height;
-    (*applyWave)(&latitude, &longitude, &wave);
+    (*applyWave)(latitude, longitude, &wave);
 
     //write initial wave
     MAT output;

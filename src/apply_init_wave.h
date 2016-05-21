@@ -12,13 +12,11 @@ namespace aasoni {
 class ApplyInitWave
 {
     public:
-
         virtual ~ApplyInitWave() { }
 
         typedef vector<double> VEC;
         typedef vector<VEC> MAT;
-        virtual void operator()(VEC *x, VEC *y, MAT *surf) = 0;
-
+        virtual void operator()(const VEC &x, const VEC &y, MAT *surf) = 0;
 };
 
 } //aasoni

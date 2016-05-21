@@ -22,7 +22,7 @@ class ApplyGaussWave : public ApplyInitWave
             , m_c(c)
         { }
 
-        void operator()(VEC *x, VEC *y, MAT *surf);
+        void operator()(const VEC &x, const VEC &y, MAT *surf);
 
     private:
 

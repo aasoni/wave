@@ -10,9 +10,9 @@ double ApplyGaussWave::gaussianBell(double x, double y)
                              -0.5*pow((y - pow(m_yPos,m_c))/m_ySigma, 2.0));
 }
 
-void ApplyGaussWave::operator()(VEC *x, VEC *y, MAT *surface)
+void ApplyGaussWave::operator()(const VEC &x, const VEC &y, MAT *surface)
 {
-    if(!x || !y || !surface) return;
+    if(!surface) return;
 
     size_t m = surface->size();
     if(m == 0) return; //input is empty
@@ -27,7 +27,7 @@ void ApplyGaussWave::operator()(VEC *x, VEC *y, MAT *surface)
             if(v < 0.0 || isnan(v))
                 continue;
 
-            (*surface)[i][j] = v + gaussianBell((*x)[j], (*y)[i]);
+            (*surface)[i][j] = v + gaussianBell(x[j], y[i]);
         }
     }
 }
