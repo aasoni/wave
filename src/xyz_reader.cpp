@@ -21,7 +21,7 @@ bool XYZ_Reader::readFile(VEC *x, VEC *y, vector<VEC> *z)
     if(!x || !y || !z)
         return false;
 
-    ifstream fhandle(m_fileName);
+    ifstream fhandle(m_fileName.c_str(), ifstream::in);
     if(!fhandle.good())
         return false;
 

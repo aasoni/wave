@@ -21,7 +21,7 @@ bool XYZ_Writer::writeToFile(const VEC &x,
                              const VEC &y, 
                              const vector<VEC> &z)
 {
-    ofstream fhandle(m_fileName, ios::out);
+    ofstream fhandle(m_fileName.c_str(), ios::out);
 
     //get size from vectors
     size_t n = x.size();
