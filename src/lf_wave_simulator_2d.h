@@ -88,7 +88,7 @@ class LFWaveSimulator2D : public WaveSimulator2D
         void boundaryType(bool *corner, BOUNDARY_TYPE *bType, 
                           CORNER_TYPE *cType, size_t i, size_t j);
 
-        //not exposing copy assignmen and copy constructor
+        //not exposing copy assignment and copy constructor
         LFWaveSimulator2D(const LFWaveSimulator2D &reader);
         LFWaveSimulator2D &operator=(const LFWaveSimulator2D &reader);
 };
