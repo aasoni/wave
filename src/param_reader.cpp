@@ -139,7 +139,7 @@ void ParamReader::readParameter(const string &line)
 
 ParamReader::ParamReader(const string &parameterFileName)
 {
-    ifstream fhandle(parameterFileName);
+    ifstream fhandle(parameterFileName.c_str(), ifstream::in);
 
     string line;
     while(getline(fhandle, line))
