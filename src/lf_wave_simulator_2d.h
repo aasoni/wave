@@ -14,10 +14,6 @@ class LFWaveSimulator2D : public WaveSimulator2D
 {
     public:
 
-        enum BOUNDARY_CONDITION {
-            SOMMERFELD, REFLECTIVE
-        };
-
         LFWaveSimulator2D(size_t steps,
                           double deltaX,
                           double deltaY,
