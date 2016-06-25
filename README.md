@@ -41,3 +41,8 @@ can use the run.sh script:
         ./run.sh sample/parameters.txt
 
 This will run the simulator in the background, and the python script that builds the movie in the foreground.
+
+Sample
+-------------
+This is a sample frame from a video generated using bathymetry data from the Tyrrhenian sea.
+![samplewave](https://cloud.githubusercontent.com/assets/8077248/16359370/fb9df1d4-3aff-11e6-8c8a-a27dfc1c1d00.png)
