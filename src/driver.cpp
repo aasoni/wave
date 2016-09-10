@@ -7,10 +7,10 @@ using namespace std;
 
 namespace aasoni {
 
-int run(SurfaceReader   *reader,
-        SurfaceWriter   *writer,
-        ApplyInitWave   *applyWave,
-        WaveSimulator2D *simulator,
+int run(shared_ptr<SurfaceReader>   &reader,
+        shared_ptr<SurfaceWriter>   &writer,
+        shared_ptr<ApplyInitWave>   &applyWave,
+        shared_ptr<WaveSimulator2D> &simulator,
         const string &surfaceFile,
         const string &outFilePrefix)
 {

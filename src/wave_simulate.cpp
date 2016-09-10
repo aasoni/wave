@@ -63,12 +63,13 @@ int main(int argc, char *argv[] )
     size_t yLength = paramReader.getYLength();
 
     //initialize reader
-    XYZ_Reader *reader = new XYZ_Reader();
-    reader->setXLength(xLength);
-    reader->setYLength(yLength);
+    XYZ_Reader *xyzReader = new XYZ_Reader();
+    xyzReader->setXLength(xLength);
+    xyzReader->setYLength(yLength);
+    shared_ptr<SurfaceReader> reader(xyzReader);
 
     //initialize writer
-    XYZ_Writer *writer = new XYZ_Writer();
+    shared_ptr<SurfaceWriter> writer(new XYZ_Writer());
 
     //Initialize class to add wave to surface
     double amplitude = paramReader.getWaveAmplitude();
@@ -77,14 +78,14 @@ int main(int argc, char *argv[] )
     double xSigma = paramReader.getWaveSigmaX();
     double ySigma = paramReader.getWaveSigmaY();
     double c = paramReader.getWaveC();
-    ApplyGaussWave *initWave = new ApplyGaussWave(amplitude, xPos, yPos, xSigma, ySigma, c);
-    
+    shared_ptr<ApplyInitWave> initWave(new ApplyGaussWave(amplitude, xPos, yPos, xSigma, ySigma, c));
+
     //Initialize Simualtor
     size_t steps = paramReader.getSimulationSteps();
     double deltaX = paramReader.getDeltaX();
     double deltaY = paramReader.getDeltaY();
     double deltaT = paramReader.getDeltaT();
-    WaveSimulator2D *simulator = new LFWaveSimulator2D(steps, deltaX, deltaY, deltaT);
+    shared_ptr<WaveSimulator2D> simulator(new LFWaveSimulator2D(steps, deltaX, deltaY, deltaT));
 
     //run simulation
     int rc = run(reader, writer, initWave, simulator, surfaceFileName, outFilePrefix);

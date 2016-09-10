@@ -49,7 +49,7 @@ void heightAndBathymetryToSurface(MAT *out, const MAT &b, const MAT &h)
         (*out)[i].resize(n);
         for(size_t j = 0; j != n; ++j)
         {
-            if(isnan(h[i][j]))
+            if(std::isnan(h[i][j]))
                 (*out)[i][j] = b[i][j];
             else
                 (*out)[i][j] = h[i][j];

@@ -1,5 +1,5 @@
 CC     = g++
-CFLAGS = -I./ -Isrc
+CFLAGS = -I./ -Isrc -std=c++0x
 SDIR   = src
 SRCS   = $(wildcard $(SDIR)/*.cpp)
 OBJS   = $(subst .cpp,.o,$(SRCS))

@@ -9,7 +9,7 @@ namespace aasoni {
 
 class XYZ_Writer : public SurfaceWriter
 {
-    public: 
+    public:
 
         XYZ_Writer() { }
         ~XYZ_Writer() { }

@@ -9,9 +9,10 @@ namespace aasoni {
 
 class XYZ_Reader : public SurfaceReader
 {
-    public: 
+    public:
 
         XYZ_Reader() { }
+        ~XYZ_Reader() { }
 
         //Reads a file in X Y Z format
         //x (out) - x vector
@@ -38,9 +39,6 @@ class XYZ_Reader : public SurfaceReader
         }
 
     protected:
-        ~XYZ_Reader()
-        { }
-
         //not exposing copy constructor and copy assignement
         XYZ_Reader(const XYZ_Reader& reader);
         XYZ_Reader &operator=(const XYZ_Reader &reader);
