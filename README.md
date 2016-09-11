@@ -4,7 +4,7 @@
 This repository was created for the final project of the NYU "Numerical Methods II" class of the Spring 2016 semester.
 It runs a finite differencing 2D wave simulator on input xyz data.
 
-A good source for xyz bathymetry data I found in:
+I found a good source for xyz bathymetry data at:
 https://www.ngdc.noaa.gov/mgg/bathymetry/relief.html
 
 Quick start
