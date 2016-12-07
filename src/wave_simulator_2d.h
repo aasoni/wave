@@ -9,7 +9,7 @@ namespace aasoni {
 class WaveSimulator2D
 {
     public:
-        //next will modiy the wave passed by pointer below
+        //next will modiy the wave passed to setSimulationSurface
         virtual bool next() = 0;
 
         //set initial surface with wave

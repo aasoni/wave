@@ -66,7 +66,6 @@ ParamReader::ParameterType ParamReader::paramNameToType(const string &paramName)
         return COMMENT;
     else
         return UNKNOWN_TYPE;
-
 }
 
 void ParamReader::readParameter(const string &line)

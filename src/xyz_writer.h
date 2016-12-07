@@ -39,5 +39,4 @@ class XYZ_Writer : public SurfaceWriter
 
 } //end namespace aasoni
 
-
 #endif

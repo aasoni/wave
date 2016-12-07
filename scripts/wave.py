@@ -106,7 +106,7 @@ def loadFrame(fileName):
                         X[:,x_idx] = x
                         prev_y = y
                         y_idx = y_idx + 1
-                    
+
                     X[:,x_idx] = x
                     Z[n-y_idx,x_idx] = z
                     x_idx = x_idx + 1
@@ -136,11 +136,11 @@ def generateMovie(inputFile):
     metadata     = dict( title  = '2D Wave', artist='Matplotlib',
                          comment= '2D Wave Equation')
     writer       = FFMpegWriter(fps=15, metadata=metadata, bitrate=6000)
-   
+
     Nframes = steps
     dpi = 120
     fig = plt.figure()
-    
+
     with writer.saving(fig, "../" + movieFileName, dpi):
 
         totalFrames = int(Nframes/plotInterval)
@@ -149,11 +149,11 @@ def generateMovie(inputFile):
             name = inputFile + '_' + str(i) + '.xyz'
             while not os.path.isfile(name):
                 time.sleep(10)
-   
+
             loadFrame(name)
-        
+
             plt.clf()
-            
+
             ax = fig.gca(projection = '3d')
             ax.view_init(elev=50, azim=-80)
             ax.set_xlim3d(xlow,xhig)

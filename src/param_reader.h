@@ -98,10 +98,8 @@ class ParamReader {
         double m_deltaX;
         double m_deltaY;
         double m_deltaT;
-        
-
 };
 
 } //aasoni
 
-#endif 
+#endif

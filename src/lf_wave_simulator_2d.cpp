@@ -81,14 +81,12 @@ double LFWaveSimulator2D::boundaryStep(size_t i, size_t j, BOUNDARY_TYPE type)
             return 0.0;
     }
 
-    double avg = (*m_wave)[ipo][j] + 
-                 (*m_wave)[imo][j] + 
-                 (*m_wave)[i][jpo] + 
+    double avg = (*m_wave)[ipo][j] +
+                 (*m_wave)[imo][j] +
+                 (*m_wave)[i][jpo] +
                  (*m_wave)[i][jmo];
     double alpha = pow(m_lambdaX,2.0);
-    double ret = alpha*avg + 2.0*(1 - 2.0*alpha)*(*m_wave)[i][j];
-
-    return ret;
+    return alpha*avg + 2.0*(1 - 2.0*alpha)*(*m_wave)[i][j];
 }
 
 //reflective boundary corner
@@ -120,14 +118,12 @@ double LFWaveSimulator2D::cornerStep(size_t i, size_t j, CORNER_TYPE type)
             return 0.0;
     }
 
-    double avg = (*m_wave)[ipo][j] + 
-                 (*m_wave)[imo][j] + 
-                 (*m_wave)[i][jpo] + 
+    double avg = (*m_wave)[ipo][j] +
+                 (*m_wave)[imo][j] +
+                 (*m_wave)[i][jpo] +
                  (*m_wave)[i][jmo];
     double alpha = pow(m_lambdaX,2.0);
-    double ret = alpha*avg + 2.0*(1 - 2.0*alpha)*(*m_wave)[i][j];
-
-    return ret;
+    return alpha*avg + 2.0*(1 - 2.0*alpha)*(*m_wave)[i][j];
 }
 
 //boundary step
@@ -165,15 +161,13 @@ double LFWaveSimulator2D::internalStep(size_t i, size_t j)
     if(isnan((*m_wave)[i][j-1]))
         jmo = jpo;
 
-    double avg = (*m_wave)[ipo][j] + 
-                 (*m_wave)[imo][j] + 
-                 (*m_wave)[i][jpo] + 
+    double avg = (*m_wave)[ipo][j] +
+                 (*m_wave)[imo][j] +
+                 (*m_wave)[i][jpo] +
                  (*m_wave)[i][jmo];
 
     double alpha = pow(m_lambdaX,2.0);
-    double ret = alpha*avg + 2.0*(1 - 2.0*alpha)*(*m_wave)[i][j];
-
-    return ret;
+    return alpha*avg + 2.0*(1 - 2.0*alpha)*(*m_wave)[i][j];
 }
 
 bool LFWaveSimulator2D::next()
@@ -227,4 +221,4 @@ bool LFWaveSimulator2D::next()
     return true;
 }
 
-};
+}
